@@ -1,0 +1,27 @@
+# Local files and secrets
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Python runtime and caches, when implementation starts
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Downloaded data, weights and generated experiment outputs
+/data/raw/
+/models/
+/artifacts/
+*.safetensors
+*.gguf
+*.ckpt
+
+# TeX intermediate files; manuscripts and final PDFs remain trackable
+*.aux
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.toc
