@@ -1,0 +1,49 @@
+site_name: Исследовательская wiki
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  language: ru
+  palette:
+    scheme: slate
+    primary: indigo
+    accent: cyan
+  features:
+    - navigation.sections
+    - navigation.expand
+
+nav:
+  - Начало: README.md
+  - Исследование:
+      - Короткий обзор: research-overview.md
+      - Научные источники: sources.md
+  - Подробные материалы:
+      - Постановка и протокол: research.md
+      - Модели: model-research.md
+      - Стенд τ-bench: tau-bench-review.md
+  - Работа над ВКР:
+      - Совместная работа: team.md
+      - Требования ВКР: vkr.md
+      - Процесс для агентов: agents/workflow.md
+
+plugins:
+  - search:
+      lang:
+        - ru
+        - en
+
+markdown_extensions:
+  - tables
+  - pymdownx.tasklist
+  - toc:
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+
+validation:
+  nav:
+    omitted_files: warn
+  links:
+    anchors: warn
+    unrecognized_links: warn
