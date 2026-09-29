@@ -1,0 +1,1183 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../model-research/">
+      
+      
+        <link rel="next" href="../team/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Стенд τ-bench - Исследовательская wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#обзор-τ-bench-для-сервисного-агента" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href=".." title="Исследовательская wiki" class="md-header__button md-logo" aria-label="Исследовательская wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Исследовательская wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Стенд τ-bench
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Исследовательская wiki" class="md-nav__button md-logo" aria-label="Исследовательская wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Исследовательская wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Начало
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Исследование
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Исследование
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../research-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Короткий обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Научные источники
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Подробные материалы
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Подробные материалы
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Постановка и протокол
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модели
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Стенд τ-bench
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Стенд τ-bench
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#что-проверено" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что проверено
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#семейство-и-состав" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Семейство и состав
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Семейство и состав">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#оценивание" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Оценивание
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#научный-статус" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Научный статус
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#подключение-собственного-harness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Подключение собственного harness
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Подключение собственного harness">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#практические-ограничения" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Практические ограничения
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#рекомендация-и-следующий-этап" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Рекомендация и следующий этап
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Работа над ВКР
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Работа над ВКР
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../team/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Совместная работа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vkr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Требования ВКР
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agents/workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Процесс для агентов
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#что-проверено" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что проверено
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#семейство-и-состав" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Семейство и состав
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Семейство и состав">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#оценивание" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Оценивание
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#научный-статус" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Научный статус
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#подключение-собственного-harness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Подключение собственного harness
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Подключение собственного harness">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#практические-ограничения" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Практические ограничения
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#рекомендация-и-следующий-этап" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Рекомендация и следующий этап
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="обзор-τ-bench-для-сервисного-агента">Обзор τ-bench для сервисного агента</h1>
+<p>Проверено <strong>29.09.2026</strong>. Направление выбрано инициатором;
+основной домен и протокол ниже — предложения. Связь с исследовательским
+вопросом и ограничения проекта: <a href="../research/">постановка</a>.</p>
+<h2 id="что-проверено">Что проверено</h2>
+<p>Прочитаны первичные научные источники, документация и исходники
+<code>sierra-research/tau2-bench</code>. Аудит данных и кода привязан к commit
+<strong><code>5bfa7e37b36656b37dc6d022156be6563c1007f3</code></strong>, версия пакета <strong>1.0.1</strong>.
+132 выбранных файла скачаны по этому commit; их содержимое сверено с Git
+blob SHA из публичного дерева GitHub. Код бенчмарка не исполнялся,
+зависимости не устанавливались, платные вызовы не выполнялись.
+Это статическая проверка интеграции, а не подтверждение работающего harness.</p>
+<h2 id="семейство-и-состав">Семейство и состав</h2>
+<ul>
+<li>Исходный τ-bench: retail и airline, диалог с LLM-пользователем,
+  инструменты, политика домена и проверка результата.</li>
+<li>τ²-bench: добавляет telecom и взаимодействие, при котором пользователь
+  тоже может менять состояние среды своими инструментами.</li>
+<li>τ³-bench: текущий зонтичный релиз в репозитории <code>tau2-bench</code>;
+  добавляет τ-knowledge / <code>banking_knowledge</code>, голосовой трек и исправления.
+  Наше предложение касается текстового режима.</li>
+</ul>
+<p>Числа ниже получены из файлов указанного commit, не из старых leaderboard:</p>
+<table>
+<thead>
+<tr>
+<th>Домен</th>
+<th style="text-align: right;">Стандартный набор</th>
+<th>Дополнительные разбиения</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>airline</td>
+<td style="text-align: right;">50</td>
+<td>train 30 / test 20</td>
+</tr>
+<tr>
+<td>retail</td>
+<td style="text-align: right;">114</td>
+<td>train 74 / test 40</td>
+</tr>
+<tr>
+<td>telecom</td>
+<td style="text-align: right;">114</td>
+<td>train 74 / test 40; small 20; full 2 285</td>
+</tr>
+<tr>
+<td>banking_knowledge</td>
+<td style="text-align: right;">97</td>
+<td>Отдельный train/test loader не зарегистрирован</td>
+</tr>
+</tbody>
+</table>
+<p>Итого — 375 задач в этих четырёх стандартных наборах. <code>mock</code> служит для
+отладки. Разбиения первых трёх доменов взяты из <code>split_tasks.json</code>;
+97 banking-задач — отдельные <code>tasks/task_*.json</code>, которые читает загрузчик.
+Файл с наибольшим числом записей нельзя автоматически считать стандартным
+набором: telecom <code>full</code> отличается от <code>base</code>.</p>
+<p>В банковском корпусе <strong>698 JSON-документов</strong>. Статья v1 описывает 21 категорию
+и 194 562 токена при <code>cl100k_base</code>. Это синтетический банковский мир:
+продукты, правила и документы строились с участием LLM, задачи и эталоны
+проверялись людьми. Это не выгрузка реальных клиентских обращений.
+Источник статистики и процедуры создания — <a href="https://arxiv.org/html/2603.04370v1">статья τ-knowledge</a>.</p>
+<p>Агент работает с начальным состоянием БД, общими инструкциями и доступными
+инструментами. Он должен искать регламенты и описания дополнительных функций,
+открывать обнаруженные инструменты, согласовывать действия с пользователем
+и выполнять операции. Примеры классов задач: обслуживание карт, спорные
+транзакции, реферальные операции, условия счетов, передача обращения человеку.
+Часть действий выполняет LLM-симулятор пользователя.</p>
+<h3 id="оценивание">Оценивание</h3>
+<p>Подсчёт <code>evaluation_criteria.reward_basis</code> для 97 banking-задач:</p>
+<table>
+<thead>
+<tr>
+<th>Основание награды</th>
+<th style="text-align: right;">Задач</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Только <code>DB</code></td>
+<td style="text-align: right;">87</td>
+</tr>
+<tr>
+<td>Только <code>ACTION</code></td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr>
+<td><code>DB</code> вместе с <code>NL_ASSERTION</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+<p><code>DB</code> сравнивает конечное состояние с эталоном, полученным воспроизведением
+референсных действий. В banking в состоянии также есть служебные записи
+о части вызовов: это шире, чем только бизнес-поля счетов. <code>ACTION</code> проверяет
+наличие совпадающих вызовов по имени и проверяемым аргументам; текущий код
+не требует буквального совпадения всей последовательности и порядка.
+<code>NL_ASSERTION</code> использует LLM-оценку. Поэтому весь knowledge-набор нельзя
+называть исключительно детерминированной проверкой конечного бизнес-состояния.
+См. <a href="https://github.com/sierra-research/tau2-bench/blob/5bfa7e37b36656b37dc6d022156be6563c1007f3/docs/evaluation.md">документацию оценивания</a> и <a href="https://github.com/sierra-research/tau2-bench/blob/5bfa7e37b36656b37dc6d022156be6563c1007f3/src/tau2/evaluator/evaluator_action.py">ActionEvaluator</a>.</p>
+<p><code>pass^k</code> характеризует успех во всех k повторах. Оценка для задачи с n
+прогонами и s успехами: <code>C(s,k) / C(n,k)</code>, затем усреднение по задачам.
+Это отличается от <code>pass@k</code>, означающего хотя бы один успех.
+Источник — <a href="https://github.com/sierra-research/tau2-bench/blob/5bfa7e37b36656b37dc6d022156be6563c1007f3/src/tau2/metrics/agent_metrics.py">реализация метрик</a>.</p>
+<p>В задаче есть <code>required_documents</code>, но это эталон для задачи целиком,
+а не готовая разметка каждого поискового запроса, шага или вероятности.
+Референсная траектория также не задаёт единственное правильное действие
+во всех достижимых состояниях. Автоматическую разметку промежуточных решений
+потребуется отдельно обосновать.</p>
+<h2 id="научный-статус">Научный статус</h2>
+<table>
+<thead>
+<tr>
+<th>Компонент</th>
+<th>Подтверждённый источник</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>τ-bench</td>
+<td><a href="https://proceedings.iclr.cc/paper_files/paper/2025/hash/1b126cc38b8638e07bef37e7b2bb72bf-Abstract-Conference.html">Статья в proceedings ICLR 2025</a></td>
+</tr>
+<tr>
+<td>τ²-bench</td>
+<td>Присутствует в <a href="https://icml.cc/Downloads/2026">официальной программе ICML 2026</a></td>
+</tr>
+<tr>
+<td>τ-knowledge</td>
+<td>Присутствует в <a href="https://icml.cc/Downloads/2026">официальной программе ICML 2026</a>; доступна <a href="https://arxiv.org/html/2603.04370v1">статья</a></td>
+</tr>
+<tr>
+<td>Внешняя академическая оценка</td>
+<td><a href="https://hal.cs.princeton.edu/">HAL, Princeton</a> включает TAU-bench Airline; работа HAL — ICLR 2026</td>
+</tr>
+<tr>
+<td>Критический аудит</td>
+<td><a href="https://assets.amazon.science/74/ec/867848fa44bda73d6237dfd6183d/saber-tau-bench-verified.pdf">SABER</a> исследует ошибки заданий и уточняет проверку</td>
+</tr>
+</tbody>
+</table>
+<p>Вывод обзора: семейство имеет подтверждённое научное признание и подходит
+как основа исследования. У нового knowledge-домена короче история применения,
+чем у исходных airline/retail. Не следует переносить признание семейства
+на утверждение о безошибочности конкретной версии или о полноте покрытия
+реального обслуживания клиентов. Число цитирований не верифицировалось.</p>
+<p>Поставщики моделей также используют τ-bench: например,
+<a href="https://www.anthropic.com/news/claude-3-7-sonnet">Anthropic в феврале 2025</a> раскрывает изменения scaffold и лимита
+шагов. Это подтверждает практическое применение, но не заменяет независимые
+измерения и не делает результаты с разными настройками сопоставимыми.</p>
+<h2 id="подключение-собственного-harness">Подключение собственного harness</h2>
+<p>Официально поддержан <a href="https://github.com/sierra-research/tau2-bench/blob/5bfa7e37b36656b37dc6d022156be6563c1007f3/src/tau2/agent/README.md">интерфейс HalfDuplexAgent</a>:</p>
+<ul>
+<li>конструктор получает <code>tools</code> и <code>domain_policy</code>;</li>
+<li><code>get_init_state(message_history)</code> создаёт состояние;</li>
+<li><code>generate_next_message(message, state)</code> возвращает <code>AssistantMessage</code>
+  и новое состояние;</li>
+<li>вход включает <code>UserMessage</code>, <code>ToolMessage</code>, <code>MultiToolMessage</code>;</li>
+<li>фабрика регистрируется через <code>registry.register_agent_factory</code>,
+  после чего используются штатные runner и evaluator.</li>
+</ul>
+<p>Внутри адаптера допустимы собственные вызовы моделей, маршрутизация,
+контекст и планирование. Вызовы инструментов среды должны проходить через
+стандартный цикл исполнения и попадать в траекторию. Нельзя подменять
+пользователя, эталоны или проверку ради улучшения результата.
+Примеры upstream: <code>minimal_text_agent.py</code>, <code>react_agent.py</code>,
+<code>custom_agent_eval.py</code> в <a href="https://github.com/sierra-research/tau2-bench/tree/5bfa7e37b36656b37dc6d022156be6563c1007f3/examples/agents">examples/agents</a>.</p>
+<p>Для reranking есть <a href="https://github.com/sierra-research/tau2-bench/blob/5bfa7e37b36656b37dc6d022156be6563c1007f3/src/tau2/knowledge/postprocessors/base.py">BasePostprocessor</a> и реестр обработчиков:
+<code>process(results, input_data, state)</code> возвращает пары ID документа и оценки.
+Однако стандартный domain builder при включении reranker выбирает
+<code>pointwise_llm_reranker</code> явно. Собственный обработчик нужно подключить
+в построение pipeline; одного нового имени в CLI недостаточно.
+См. <a href="https://github.com/sierra-research/tau2-bench/blob/5bfa7e37b36656b37dc6d022156be6563c1007f3/src/tau2/domains/banking_knowledge/retrieval.py">retrieval.py</a>.</p>
+<p>Предложение минимальной интеграции: сохранить штатные среду, симулятор и
+оценивание, обернуть наш контроллер в HalfDuplexAgent, отдельно подключить
+заменяемый обработчик поиска при необходимости. Jev/Laya применяются
+в выбранном узле; одного изменения имени <code>agent-llm</code> недостаточно для
+превращения типизированной модели в полноценного диалогового агента.</p>
+<h3 id="практические-ограничения">Практические ограничения</h3>
+<ol>
+<li><strong>Стоимость.</strong> <code>get_cost</code> складывает стоимость сообщений траектории
+   и пропускает <code>ToolMessage</code>. Внутренний router, reranker, embeddings,
+   повторные и отброшенные вызовы автоматически не покрываются этим счётчиком.
+   В примере ReAct стоимость THINK не переносится в возвращаемый ACT.
+   Для наших выводов нужен полный журнал вызовов и отдельный учёт агента,
+   симулятора и оценивания. См. <a href="https://github.com/sierra-research/tau2-bench/blob/5bfa7e37b36656b37dc6d022156be6563c1007f3/src/tau2/utils/llm_utils.py">код стоимости</a>.</li>
+<li><strong>Задержка.</strong> Полная <code>SimulationRun.duration</code> включает работу симулятора.
+   Нужны отдельно время агента с инструментами и длительность всей симуляции;
+   режим параллелизма фиксируется.</li>
+<li><strong>Утечка эталона.</strong> <a href="https://github.com/sierra-research/tau2-bench/blob/5bfa7e37b36656b37dc6d022156be6563c1007f3/src/tau2/runner/build.py">build_agent</a> передаёт фабрике объект <code>task</code>
+   для специальных режимов. Наш обычный harness не должен получать из него
+   скрытые цели, <code>required_documents</code>, референсные действия или критерии.</li>
+<li><strong>Разбиение.</strong> Banking-загрузчик пока не использует <code>task_split_name</code>.
+   Разделение настройки/калибровки и тестирования нужно задавать явными ID,
+   желательно с группировкой похожих workflow. Повторы не заменяют новые задачи.</li>
+<li><strong>Версия.</strong> <a href="https://github.com/sierra-research/tau2-bench/blob/5bfa7e37b36656b37dc6d022156be6563c1007f3/CHANGELOG.md">Релиз 1.0.1 от 15.07.2026</a> изменил banking-оценивание;
+   результаты до и после релиза напрямую несопоставимы.</li>
+<li><strong>Leaderboard.</strong> В текстовом треке собственный router, planner или
+   изменённый scaffold относится к <code>custom</code>. Такая категория предусмотрена,
+   требуется раскрыть методику и реализацию. Для локальной научной оценки
+   предварительное согласование с авторами не нужно. Публикация результатов
+   и внешняя отправка пока не поручены. См. <a href="https://github.com/sierra-research/tau2-bench/blob/5bfa7e37b36656b37dc6d022156be6563c1007f3/docs/leaderboard-submission.md">правила подачи</a>.</li>
+</ol>
+<p>Python — <code>&gt;=3.12,&lt;3.14</code>; пакет и репозиторий объявляют MIT.
+Для текстового BM25-варианта поиска не нужны embeddings API или shell sandbox;
+LLM агента и пользователя при этом всё равно должны быть доступны.
+<code>alltools</code> добавляет BM25, dense retrieval и sandboxed shell, поэтому требует
+дополнительной настройки. Совместимость всего набора на нашем Mac ещё не
+проверена запуском. См. <a href="https://github.com/sierra-research/tau2-bench/blob/5bfa7e37b36656b37dc6d022156be6563c1007f3/src/tau2/knowledge/README.md">варианты retrieval</a>.</p>
+<h2 id="рекомендация-и-следующий-этап">Рекомендация и следующий этап</h2>
+<p>Оценка сложности: адаптер агента — небольшая инженерная задача; собственный
+retrieval — умеренная; корректный сравнительный эксперимент — основная работа.
+Начать с короткой проверки стандартного агента и адаптера на retail, затем
+пилота <code>banking_knowledge</code> с одним фиксированным retrieval. Выделять основной
+узел после проверки его доли в ошибках и затратах. Для сравнения методов
+reranking сохранять исходного кандидатообразователя и одинаковый бюджет.</p>
+<p>Основной стенд предлагается <code>banking_knowledge</code>; retail — возможный контроль
+переноса. Сначала baseline и один узел, затем расширения по результатам.
+Полная серия из четырёх вариантов на 97 задачах с четырьмя повторами —
+1 552 диалога, не 1 552 модельных вызова. Денежную оценку можно получить
+из малого пилота; бюджет API пока не определён.</p>
+<p>Самопроверка обзора: научные статусы сверены с первичными площадками,
+числа задач и основания награды пересчитаны, скачанные файлы сверены с Git
+blob SHA. Независимого человеческого review и проверки runtime ещё не было.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
