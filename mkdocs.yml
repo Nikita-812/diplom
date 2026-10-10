@@ -15,22 +15,26 @@ theme:
 
 nav:
   - Начало: README.md
+  - Wiki GitMark:
+      - Состояние и задачи: gitmark/README.md
+      - Онтология: gitmark/ontology.md
   - Исследование:
-      - Короткий обзор: research-overview.md
-      - Научные источники: sources.md
+      - Короткий обзор: gitmark/research-overview.md
+      - Научные источники: gitmark/sources.md
   - Подробные материалы:
-      - Постановка и протокол: research.md
-      - Архитектура v0.2: architecture.md
-      - Протокол HotpotQA: hotpotqa-protocol.md
-      - Модели: model-research.md
-      - Стенд τ-bench: tau-bench-review.md
+      - Постановка и протокол: gitmark/research.md
+      - Архитектура v0.2: gitmark/architecture.md
+      - Протокол HotpotQA: gitmark/hotpotqa-protocol.md
+      - Модели: gitmark/model-research.md
+      - Стенд τ-bench: gitmark/tau-bench-review.md
   - Работа над ВКР:
-      - Совместная работа: team.md
-      - Требования ВКР: vkr.md
-      - Процесс для агентов: agents/workflow.md
-      - Доменный контекст: agents/domain.md
-      - Задачи проекта: agents/issue-tracker.md
-      - Статусы триажа: agents/triage-labels.md
+      - Совместная работа: gitmark/team.md
+      - Требования ВКР: gitmark/vkr.md
+      - Документы агентов: gitmark/agents/README.md
+      - Процесс для агентов: gitmark/agents/workflow.md
+      - Доменный контекст: gitmark/agents/domain.md
+      - Задачи проекта: gitmark/agents/issue-tracker.md
+      - Статусы триажа: gitmark/agents/triage-labels.md
 
 plugins:
   - search:
@@ -39,6 +43,7 @@ plugins:
         - en
 
 markdown_extensions:
+  - meta
   - tables
   - pymdownx.tasklist
   - toc:
