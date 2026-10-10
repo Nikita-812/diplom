@@ -11,6 +11,9 @@ __pycache__/
 .pytest_cache/
 .ipynb_checkpoints/
 
+# Derived GitMark search index
+/.gitmark/
+
 # Downloaded data, weights and generated experiment outputs
 /data/raw/
 /models/

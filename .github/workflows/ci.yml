@@ -27,5 +27,11 @@ jobs:
       - run: python -m yamllint .github/workflows/ci.yml mkdocs.yml openspec/config.yaml .yamllint.yml
       - run: >-
           npm exec --yes --package=markdownlint-cli2@0.23.2 --
-          markdownlint-cli2 README.md AGENTS.md 'docs/**/*.md'
+          markdownlint-cli2 README.md AGENTS.md CLAUDE.md 'docs/**/*.md'
+          '.claude/commands/*.md' '.claude/skills/dev-flow/SKILL.md'
+          '.claude/skills/task-breakdown/SKILL.md' '.claude/skills/kb-search/SKILL.md'
+          '.claude/skills/kb-maintain/SKILL.md' '.agents/skills/kb-*/SKILL.md'
+      - run: python .claude/skills/kb-search/gitmark.py lint --strict
+      - run: python .claude/skills/kb-search/gitmark.py index
+      - run: python .claude/skills/kb-search/gitmark.py search 'τ-knowledge' -k 3
       - run: python -m mkdocs build --strict --site-dir /tmp/diplom-site
