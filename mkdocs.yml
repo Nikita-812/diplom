@@ -23,7 +23,7 @@ nav:
       - Научные источники: gitmark/sources.md
   - Подробные материалы:
       - Постановка и протокол: gitmark/research.md
-      - Архитектура v0.2: gitmark/architecture.md
+      - Архитектура v0.3: gitmark/architecture.md
       - Протокол HotpotQA: gitmark/hotpotqa-protocol.md
       - Модели: gitmark/model-research.md
       - Стенд τ-bench: gitmark/tau-bench-review.md
@@ -35,6 +35,10 @@ nav:
       - Доменный контекст: gitmark/agents/domain.md
       - Задачи проекта: gitmark/agents/issue-tracker.md
       - Статусы триажа: gitmark/agents/triage-labels.md
+
+  - Проект исправлений:
+      - Дизайн аудита: superpowers/specs/2026-10-09-audit-remediation-design.md
+      - План реализации: superpowers/plans/2026-10-09-audit-remediation.md
 
 plugins:
   - search:

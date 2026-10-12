@@ -1,1 +1,6 @@
 site/** -whitespace
+
+# Checksums cover the exact bytes of presentation sources on every platform.
+presentations/advisor/** text eol=lf
+presentations/advisor/*.pptx -text
+presentations/advisor/source/*.png -text

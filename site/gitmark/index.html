@@ -687,7 +687,7 @@
   <span class="md-ellipsis">
     
   
-    Архитектура v0.2
+    Архитектура v0.3
   
 
     
@@ -1126,6 +1126,123 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проект исправлений
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Проект исправлений
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../superpowers/specs/2026-10-09-audit-remediation-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн аудита
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../superpowers/plans/2026-10-09-audit-remediation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    План реализации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1214,8 +1331,10 @@
 
 
 <h1 id="wiki-проекта">Wiki проекта</h1>
-<p>Содержание обновлено: <strong>07.10.2026</strong>; перенесено в GitMark 10.10.2026. Источники подтверждённых решений — интервью с инициатором
-29.09.2026 и обсуждение архитектуры 01.10.2026; внешние источники приведены
+<p>Содержание обновлено: <strong>09.10.2026</strong>; перенесено в GitMark 10.10.2026, согласовано при слиянии 13.10.2026. Источники подтверждённых решений — интервью с инициатором
+29.09.2026 и обсуждение архитектуры 01.10.2026; предпочтение одного участника
+по адаптации сообщено инициатором 09.10.2026 и не является утверждением темы;
+внешние источники приведены
 в тематических документах.</p>
 <h2 id="маршруты-чтения">Маршруты чтения</h2>
 <table>
@@ -1248,7 +1367,7 @@
 </tr>
 <tr>
 <td>Реализовать агента и спланировать серии экспериментов</td>
-<td><a href="architecture/">Архитектура v0.2: τ-knowledge, tools и RAG</a></td>
+<td><a href="architecture/">Архитектура v0.3: τ-knowledge, tools и RAG</a></td>
 </tr>
 <tr>
 <td>Провести контролируемый опыт отбора доказательств</td>
@@ -1353,7 +1472,7 @@
 </tr>
 <tr>
 <td>Модели и стенд</td>
-<td>Open-source решения; Jev исключён. Последовательные прогоны на Mac, открытая LLM через OpenAI-совместимый API, Laya локально; симулятор/оценщик также проверяются на зависимости от закрытых моделей</td>
+<td>Open-source решения; Jev только в обзоре, без исполняемых вызовов. Последовательные прогоны на Mac; KEV-0.8B/4B предложены для пилота/качества τ-knowledge, Laya — для компактного HotpotQA; открытая LLM может размещаться через API. Симулятор/оценщик проверяются на зависимости от закрытых моделей</td>
 </tr>
 <tr>
 <td>Публикации</td>
@@ -1379,12 +1498,12 @@
 <li class="task-list-item"><input type="checkbox" disabled checked/> Определить область опытов: знания, tools и RAG с включением τ-knowledge (инициатор, уточнение 01.10.2026).</li>
 <li class="task-list-item"><input type="checkbox" disabled/> Закрепить версию τ-knowledge, проверить задачи, открытый симулятор и расходы native baseline;
       HotpotQA проверить отдельно. <a href="architecture/#2-бенчмарки-и-границы-оценки">Бенчмарки и границы оценки</a>.</li>
-<li class="task-list-item"><input type="checkbox" disabled/> Провести review <a href="architecture/">архитектуры v0.2</a>: ответственный — инициатор;
+<li class="task-list-item"><input type="checkbox" disabled/> Провести review <a href="architecture/">проекта архитектуры v0.3</a>: ответственный — инициатор;
       результат — принятая спецификация и перечень поправок. Самопроверка описана
       <a href="architecture/#9-самостоятельные-исследования-и-статус">в документе</a>, review участника ещё не выполнено.</li>
 <li class="task-list-item"><input type="checkbox" disabled checked/> Выбрать направление: обработка сервисных обращений по базе знаний с выполнением операций.</li>
-<li class="task-list-item"><input type="checkbox" disabled/> Выбрать конкретный домен и протокол после <a href="tau-bench-review/">обзора τ-bench</a>; кандидат — <code>banking_knowledge</code>, проверка переноса — <code>retail</code>.</li>
-<li class="task-list-item"><input type="checkbox" disabled/> Распределить самостоятельные исследовательские вопросы между тремя авторами.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Выбрать конкретный домен и протокол после <a href="tau-bench-review/">обзора τ-bench</a> и preflight evaluator/симулятора/baseline/бюджета; условный кандидат — <code>banking_knowledge</code>, проверка переноса — <code>retail</code>.</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Обсудить и академически согласовать три <a href="research/#кандидаты-на-три-самостоятельных-исследования">предложенных самостоятельных вопроса</a> между авторами; один неназванный участник предпочёл адаптацию, остальные назначения не установлены.</li>
 <li class="task-list-item"><input type="checkbox" disabled/> Выбрать первую серию из <a href="architecture/#5-программа-экспериментов">программы E1–E7</a>,
       допуски качества для каждого стенда и <a href="architecture/#7-протокол-сравнения-и-статистика">протокол оценки</a>.</li>
 <li class="task-list-item"><input type="checkbox" disabled/> Определить бюджет API и провести малый пилот до большой серии экспериментов.</li>
