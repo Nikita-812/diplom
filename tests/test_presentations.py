@@ -49,7 +49,7 @@ class PresentationTests(unittest.TestCase):
                                if n.startswith('ppt/notesSlides/notesSlide') and n.endswith('.xml')).decode()
             self.assertNotIn('/Users/', notes)
             self.assertNotIn('/workspace/', notes)
-            self.assertIn('docs/research.md', notes)
+            self.assertIn('docs/gitmark/research.md', notes)
 
     def test_current_objective_keeps_native_math_and_quality_constraint(self):
         ns = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main',

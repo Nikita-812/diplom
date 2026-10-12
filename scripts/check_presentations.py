@@ -64,7 +64,7 @@ def check(directory):
                         raise ValueError('Slide count differs from current content')
                     notes = [n for n in names if n.startswith('ppt/notesSlides/notesSlide') and n.endswith('.xml')]
                     text = '\n'.join(archive.read(n).decode() for n in notes)
-                    if len(notes) != 16 or '/Users/' in text or '/workspace/' in text or 'docs/research.md' not in text:
+                    if len(notes) != 16 or '/Users/' in text or '/workspace/' in text or 'docs/gitmark/research.md' not in text:
                         raise ValueError('Current notes missing or contain nonportable paths')
         except (zipfile.BadZipFile, ET.ParseError, KeyError, ValueError, TypeError) as exc:
             errors.append(f'PPTX {file.name}: {exc}')

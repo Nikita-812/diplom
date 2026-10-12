@@ -10,5 +10,7 @@
   "python_minimum": "3.12",
   "authoring_environment": "Codex primary runtime; targeted Open XML editing; PowerPoint rendering",
   "current_deck": "advisor-presentation.pptx",
-  "style_reviewed_date": "2026-10-11"
+  "style_reviewed_date": "2026-10-11",
+  "notes_updated_date": "2026-10-13",
+  "notes_validation_artifact_tool": "2.8.93"
 }
