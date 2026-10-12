@@ -1,5 +1,6 @@
 # Local files and secrets
 .DS_Store
+~$*.pptx
 .env
 .env.*
 !.env.example

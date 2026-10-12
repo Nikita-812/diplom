@@ -18,24 +18,24 @@ class PresentationTests(unittest.TestCase):
     def test_checker_rejects_truncated_deck_even_with_matching_hash(self):
         with tempfile.TemporaryDirectory() as tmp:
             directory = Path(tmp) / 'advisor'
-            shutil.copytree(ADVISOR, directory)
-            path = directory / 'advisor-presentation-v3-team.pptx'
+            shutil.copytree(ADVISOR, directory, ignore=shutil.ignore_patterns('~$*'))
+            path = directory / 'advisor-presentation.pptx'
             path.write_bytes(path.read_bytes()[:700000])
             manifest = directory / 'SHA256SUMS'
             lines = []
-            for line in manifest.read_text().splitlines():
+            for line in manifest.read_text(encoding='utf-8').splitlines():
                 digest, name = line.split(maxsplit=1)
                 if name == path.name:
                     digest = hashlib.sha256(path.read_bytes()).hexdigest()
                 lines.append(f'{digest}  {name}')
-            manifest.write_text('\n'.join(lines)+'\n')
+            manifest.write_text('\n'.join(lines)+'\n', encoding='utf-8')
             result = subprocess.run([sys.executable, str(ROOT / 'scripts/check_presentations.py'),
                                      '--directory', str(directory)], capture_output=True, text=True)
             self.assertNotEqual(result.returncode, 0)
-            self.assertIn('PPTX advisor-presentation-v3-team.pptx', result.stderr)
+            self.assertIn('PPTX advisor-presentation.pptx', result.stderr)
 
     def test_current_content_has_complete_timing_and_closing_order(self):
-        content = json.loads((ADVISOR / 'source/content-v4.json').read_text())
+        content = json.loads((ADVISOR / 'source/content.json').read_text(encoding='utf-8'))
         self.assertEqual(len(content['slides']), 16)
         self.assertEqual(content['main_slide_count'], 14)
         self.assertEqual(sum(s['seconds'] for s in content['slides']), 1080)
@@ -44,22 +44,63 @@ class PresentationTests(unittest.TestCase):
         self.assertEqual(content['slides'][12]['title'], 'Общий стенд и границы личного вклада')
 
     def test_current_deck_has_portable_notes(self):
-        with zipfile.ZipFile(ADVISOR / 'advisor-presentation-v4-reviewed.pptx') as archive:
+        with zipfile.ZipFile(ADVISOR / 'advisor-presentation.pptx') as archive:
             notes = b'\n'.join(archive.read(n) for n in archive.namelist()
                                if n.startswith('ppt/notesSlides/notesSlide') and n.endswith('.xml')).decode()
             self.assertNotIn('/Users/', notes)
             self.assertNotIn('/workspace/', notes)
             self.assertIn('docs/research.md', notes)
 
+    def test_current_objective_keeps_native_math_and_quality_constraint(self):
+        ns = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main',
+              'p': 'http://schemas.openxmlformats.org/presentationml/2006/main',
+              'm': 'http://schemas.openxmlformats.org/officeDocument/2006/math'}
+        with zipfile.ZipFile(ADVISOR / 'advisor-presentation.pptx') as archive:
+            objective = ElementTree.fromstring(archive.read('ppt/slides/slide6.xml'))
+            self.assertEqual(len(objective.findall('.//m:oMath', ns)), 6)
+            self.assertEqual(len(objective.findall('.//m:limLow', ns)), 1)
+            expected = {'5': 'minπ ∈ Π  𝔼Cagent(π, X)',
+                        '7': '𝔼L(π, X) ≤ 𝔼L(π0, X) + ε'}
+            for shape in objective.findall('.//p:sp', ns):
+                shape_id = shape.find('p:nvSpPr/p:cNvPr', ns).get('id')
+                if shape_id in expected:
+                    math = shape.find('.//m:oMath', ns)
+                    self.assertEqual(''.join(t.text or '' for t in math.findall('.//m:t', ns)),
+                                     expected.pop(shape_id))
+            self.assertFalse(expected, 'Primary equation shapes are missing')
+            visible_text = ''.join(t.text or '' for t in objective.findall('.//a:t', ns))
+            self.assertNotIn('C_agent', visible_text)
+            self.assertNotIn('E[', visible_text)
+
+    def test_cost_of_success_keeps_all_attempts_and_zero_success_guard(self):
+        ns = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main',
+              'm': 'http://schemas.openxmlformats.org/officeDocument/2006/math'}
+        with zipfile.ZipFile(ADVISOR / 'advisor-presentation.pptx') as archive:
+            cost = ElementTree.fromstring(archive.read('ppt/slides/slide10.xml'))
+            self.assertEqual(len(cost.findall('.//m:f', ns)), 1)
+            self.assertEqual(len(cost.findall('.//m:nary', ns)), 1)
+            math = cost.find('.//m:oMath', ns)
+            self.assertEqual(''.join(t.text or '' for t in math.findall('.//m:t', ns)),
+                             'Csuccess = i = 1NCagent, iS')
+            self.assertEqual(''.join(math.find('m:f/m:den', ns).itertext()), 'S')
+            guard = ''.join(t.text or '' for t in cost.findall('.//a:t', ns))
+            self.assertIn('S > 0', guard)
+            self.assertIn('Все попытки входят в сумму.', guard)
+            self.assertIn('При S = 0 стоимость успеха не определена', guard)
+
     def test_all_stored_presentations_are_complete_packages(self):
-        for path in ADVISOR.glob("*.pptx"):
+        decks = [p for p in ADVISOR.glob("*.pptx") if not p.name.startswith('~$')]
+        self.assertEqual([p.name for p in decks], ['advisor-presentation.pptx'])
+        for path in decks:
+            if path.name.startswith('~$'):
+                continue
             with self.subTest(file=path.name):
                 with zipfile.ZipFile(path) as archive:
                     self.assertIsNone(archive.testzip())
                     ElementTree.fromstring(archive.read("ppt/presentation.xml"))
 
     def test_manifest_matches_actual_files(self):
-        for line in (ADVISOR / "SHA256SUMS").read_text().splitlines():
+        for line in (ADVISOR / "SHA256SUMS").read_text(encoding='utf-8').splitlines():
             digest, name = line.split(maxsplit=1)
             with self.subTest(file=name):
                 self.assertEqual(hashlib.sha256((ADVISOR / name).read_bytes()).hexdigest(), digest)
