@@ -1,0 +1,25 @@
+---
+node_type: reference
+title: Статусы триажа
+service: _platform
+status: active
+updated: 2026-10-10
+links:
+  relates_to: [docs/gitmark/README.md]
+---
+
+# Статусы триажа
+
+В wiki нет меток. Навыки используют эти текстовые статусы, когда требуется
+явно обозначить этап обработки задачи.
+
+| Роль | Статус в wiki | Значение |
+| --- | --- | --- |
+| `needs-triage` | `needs-triage` | Нужна оценка ответственным |
+| `needs-info` | `needs-info` | Ожидаются уточнения |
+| `ready-for-agent` | `ready-for-agent` | Постановка достаточна для автономной работы агента |
+| `ready-for-human` | `ready-for-human` | Нужна работа человека |
+| `wontfix` | `wontfix` | Задача не будет выполнена |
+
+Статус записывать рядом с соответствующим пунктом
+[списка задач](../README.md#ближайшие-задачи); не создавать GitHub-метки.

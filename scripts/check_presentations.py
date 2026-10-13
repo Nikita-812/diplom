@@ -13,7 +13,7 @@ from xml.etree import ElementTree as ET
 def check(directory):
     errors = []
     manifest = {}
-    for line in (directory / 'SHA256SUMS').read_text().splitlines():
+    for line in (directory / 'SHA256SUMS').read_text(encoding='utf-8').splitlines():
         digest, name = line.split(maxsplit=1)
         relative = PurePosixPath(name)
         if relative.is_absolute() or '..' in relative.parts or name in manifest:
@@ -24,16 +24,21 @@ def check(directory):
         if not file.is_file() or hashlib.sha256(file.read_bytes()).hexdigest() != digest:
             errors.append(f'SHA-256 mismatch/missing: {name}')
     files = {p.relative_to(directory).as_posix() for p in directory.rglob('*')
-             if p.is_file() and p.name != 'SHA256SUMS' and '__pycache__' not in p.parts}
+             if p.is_file() and p.name != 'SHA256SUMS' and not p.name.startswith('~$') and '__pycache__' not in p.parts}
     if files != set(manifest):
         errors.append(f'Manifest coverage: missing={sorted(files-set(manifest))}; stale={sorted(set(manifest)-files)}')
-    current = 'advisor-presentation-v4-reviewed.pptx'
-    content = json.loads((directory / 'source/content-v4.json').read_text())
+    current = 'advisor-presentation.pptx'
+    decks = {p.name for p in directory.glob('*.pptx') if not p.name.startswith('~$')}
+    if decks != {current}:
+        errors.append(f'Keep one current deck; found: {sorted(decks)}')
+    content = json.loads((directory / 'source/content.json').read_text(encoding='utf-8'))
     if len(content['slides']) != 16 or content['main_slide_count'] != 14:
         errors.append('Current content must have 16 slides, 14 main')
     if sum(s['seconds'] for s in content['slides']) != 1080 or content['total_seconds'] != 1080:
         errors.append('Main talk timing must total 1080 seconds')
     for file in directory.glob('*.pptx'):
+        if file.name.startswith('~$'):
+            continue
         try:
             with zipfile.ZipFile(file) as archive:
                 if archive.testzip():
@@ -59,7 +64,7 @@ def check(directory):
                         raise ValueError('Slide count differs from current content')
                     notes = [n for n in names if n.startswith('ppt/notesSlides/notesSlide') and n.endswith('.xml')]
                     text = '\n'.join(archive.read(n).decode() for n in notes)
-                    if len(notes) != 16 or '/Users/' in text or '/workspace/' in text or 'docs/research.md' not in text:
+                    if len(notes) != 16 or '/Users/' in text or '/workspace/' in text or 'docs/gitmark/research.md' not in text:
                         raise ValueError('Current notes missing or contain nonportable paths')
         except (zipfile.BadZipFile, ET.ParseError, KeyError, ValueError, TypeError) as exc:
             errors.append(f'PPTX {file.name}: {exc}')

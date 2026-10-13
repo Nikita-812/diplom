@@ -1,11 +1,16 @@
 {
-  "artifact_tool": "2.8.85",
+  "artifact_tool": "2.8.91",
   "font": "DejaVu Sans",
-  "slide_size_px": [
-    1280,
-    720
-  ],
+  "math_font": "Cambria Math",
+  "text_color": "182B3B",
+  "page_color": "5D686E",
+  "diagram_accent_color": "236F6A",
+  "table_header_color": "FFFFFF",
+  "slide_size_px": [1280, 720],
   "python_minimum": "3.12",
-  "authoring_environment": "Codex primary runtime; requires bundled presentation validators"
+  "authoring_environment": "Codex primary runtime; targeted Open XML editing; PowerPoint rendering",
+  "current_deck": "advisor-presentation.pptx",
+  "style_reviewed_date": "2026-10-11",
+  "notes_updated_date": "2026-10-13",
+  "notes_validation_artifact_tool": "2.8.93"
 }
-
