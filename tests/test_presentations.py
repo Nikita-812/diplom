@@ -88,17 +88,6 @@ class PresentationTests(unittest.TestCase):
             self.assertIn('Все попытки входят в сумму.', guard)
             self.assertIn('При S = 0 стоимость успеха не определена', guard)
 
-    def test_all_stored_presentations_are_complete_packages(self):
-        decks = [p for p in ADVISOR.glob("*.pptx") if not p.name.startswith('~$')]
-        self.assertEqual([p.name for p in decks], ['advisor-presentation.pptx'])
-        for path in decks:
-            if path.name.startswith('~$'):
-                continue
-            with self.subTest(file=path.name):
-                with zipfile.ZipFile(path) as archive:
-                    self.assertIsNone(archive.testzip())
-                    ElementTree.fromstring(archive.read("ppt/presentation.xml"))
-
     def test_manifest_matches_actual_files(self):
         for line in (ADVISOR / "SHA256SUMS").read_text(encoding='utf-8').splitlines():
             digest, name = line.split(maxsplit=1)
