@@ -2458,8 +2458,8 @@ docs/{agent-architecture-detail,agent-pipeline}.{excalidraw,png}.
 </ul>
 <h2 id="task-5-evaluator-samples-и-происхождение">Task 5: Evaluator, samples и происхождение</h2>
 <p><strong>Files:</strong> .agents/skills/agent-designer/{agent_evaluator.py,README.md,SOURCE.md,LICENSE,SKILL.md};
-expected_outputs/<em>.json; tests/test_agent_evaluator.py.
-</em><em>Interfaces:</em>* Existing generate_report; tool usage metrics берутся из actions, unknown telemetry маркируется явно.</p>
+expected_outputs/*.json; tests/test_agent_evaluator.py.
+<strong>Interfaces:</strong> Existing generate_report; tool usage metrics берутся из actions, unknown telemetry маркируется явно.</p>
 <ul class="task-list">
 <li class="task-list-item"><input type="checkbox" disabled checked/> Написать tests штатного report и action-level counts/latency/error; запустить RED.</li>
 <li class="task-list-item"><input type="checkbox" disabled checked/> Исправить поля рекомендаций и расчёт tool metrics; сверить агрегаты sample.</li>
@@ -2468,8 +2468,8 @@ expected_outputs/<em>.json; tests/test_agent_evaluator.py.
 <li class="task-list-item"><input type="checkbox" disabled checked/> Выполнить полный suite и коммит законченного изменения.</li>
 </ul>
 <h2 id="task-6-сайт-и-ci">Task 6: Сайт и CI</h2>
-<p><strong>Files:</strong> scripts/check_site.py; tests/test_site.py; .github/workflows/ci.yml; requirements-tools.txt; mkdocs.yml; site/<strong>.
-</strong>Interfaces:** Site checker сравнивает current build с tracked site; CI запускает tools tests, PPTX checker и site check.</p>
+<p><strong>Files:</strong> scripts/check_site.py; tests/test_site.py; .github/workflows/ci.yml; requirements-tools.txt; mkdocs.yml; site/**.
+<strong>Interfaces:</strong> Site checker сравнивает current build с tracked site; CI запускает tools tests, PPTX checker и site check.</p>
 <ul class="task-list">
 <li class="task-list-item"><input type="checkbox" disabled checked/> Регрессионная проверка missing architecture/hotpot pages должна отказать на baseline.</li>
 <li class="task-list-item"><input type="checkbox" disabled checked/> Добавить содержательную синхронизацию и проверки CI; пересобрать tracked site.</li>
