@@ -37,6 +37,7 @@ KEV features и обучает только CPU FP32 head; отдельный on
 
 Files: scripts/system_one_pilot/adaptation.py, live.py, live_data.py;
 tests/test_system_one_adaptation.py.
+
 - [x] RED: deterministic family plan, immutable split, no test, no old family reuse;
   семейный sampling, старые train labels не попадают в dev.
 - [x] GREEN: prepare protocol; коллекция по explicit verified plan и новым call IDs;
@@ -48,6 +49,7 @@ tests/test_system_one_adaptation.py.
 
 Files: scripts/system_one_pilot/adapt_head.py; tests/test_system_one_adapt_head.py.
 Consumes: dataset.jsonl+manifest, checked KEV source/weights, training protocol.
+
 - [x] RED: labels не в encoder, train-only optimizer, fixed epochs, group split
   calibration/validation, temperature fit не смотрит validation, scalar Brier.
 - [x] GREEN: native feature hook/cache с input/model hashes; CPU head optimizer,
@@ -59,6 +61,7 @@ Consumes: dataset.jsonl+manifest, checked KEV source/weights, training protocol.
 
 Files: scripts/system_one_pilot/online.py; tests/test_system_one_online.py.
 Consumes: Task1 protocol/split, Task2 heads/temperature; тот же PaidClient.
+
 - [x] RED: общий packer не превышает бюджет, только observed evidence IDs,
   non-KB tools/system policy сохраняются, model failure вызывает учтённый fallback;
   evaluator NL never leaks into actor, все роли/стоимости записаны.

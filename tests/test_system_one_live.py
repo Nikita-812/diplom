@@ -1,6 +1,7 @@
 """Offline contracts for paid collection, visibility and persistent review."""
 import copy
 import json
+import os
 from pathlib import Path
 import sqlite3
 import tempfile
@@ -213,6 +214,8 @@ class DataTests(unittest.TestCase):
             self.assertTrue(all(v is None for v in value['versions'].values()))
             self.assertTrue((Path(tmp)/'code-snapshots').is_dir())
 
+    @unittest.skipUnless(os.environ.get('SYSTEM_ONE_NATIVE_TESTS') == '1',
+                         'Native tests require SYSTEM_ONE_NATIVE_TESTS=1 and pinned source data')
     def test_collection_selection_is_sealed_train_and_distinct_families(self):
         root = Path(__file__).resolve().parents[1]
         source = next((root/'artifacts/system-one-pilot/source').glob('tau2-*'))

@@ -1,5 +1,23 @@
 # Воспроизводимые пилоты banking_knowledge
 
+## Локальные проверки и CI
+
+Обычные проверки используют `requirements-docs.txt` и `requirements-tools.txt`:
+`python -m unittest discover -s tests -v`. Они не требуют локальных выгрузок,
+весов или API. Тесты head-only обучения пропускаются, если не установлен torch.
+Семь native-проверок запускаются явно в подготовленной среде пилота с закреплёнными
+исходниками и данными τ-knowledge:
+
+```sh
+SYSTEM_ONE_NATIVE_TESTS=1 artifacts/system-one-pilot/live-venv/bin/python -m unittest discover -s tests -v
+node tests/test_system_one_review.cjs
+```
+
+Native-проверки используют подставной HTTP и временные SQLite, не обращаются
+к платным API и не изменяют журналы оплаченных серий. CI без исходников τ-knowledge
+явно отмечает их как skipped. При изменениях native-интеграции нужен также полный
+локальный запуск. [Запись подготовки к отправке в main 02.11.2026](results/repository-checks-20261102/work-log.md).
+
 Результат и принятое решение — в [отчёте wiki](../../docs/gitmark/system-one-pilot.md).
 Это инженерная диагностика scorer, а не завершённое сравнение native агентов.
 Старые offline-метки предварительные, одного агента. Новый API-пилот ниже

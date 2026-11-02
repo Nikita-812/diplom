@@ -12,8 +12,8 @@
     },
     {
       "path": "docs/translations/openjev-rlcd-ru.md",
-      "bytes": 75746,
-      "sha256": "85eedba3b90b704ebde083b9ead9b222db885e2a917b6cb22f068a2704f37790"
+      "bytes": 75748,
+      "sha256": "8be9c0e4adff511ff68165e74d74e8b17196e65bd1fd1d96dc2a2d177d53b624"
     },
     {
       "path": "docs/translations/openjev-rlcd-ru.html",
@@ -22,8 +22,8 @@
     },
     {
       "path": "docs/translations/sbert2s1-ru.md",
-      "bytes": 176329,
-      "sha256": "331e8c1ef4a182c69cbbd39f51bd1c5bd5b5521c943dd9059aa21e9c97901b84"
+      "bytes": 176720,
+      "sha256": "44ff3bc1321e76ea5e93689d44c2bac98f51c1a11ffeb7e3a5f608764371f435"
     },
     {
       "path": "docs/translations/sbert2s1-ru.html",
@@ -50,5 +50,22 @@
       "bytes": 1460,
       "sha256": "4d058c5f835ced6651b7429424ace7e60df52b1a5bf4e80509f3b6851975c97c"
     }
-  ]
+  ],
+  "maintenance": {
+    "date": "2026-11-02",
+    "base_commit": "4f3229b",
+    "changes": "Механическое оформление Markdown для CI; текст, числа, формулы и HTML-версии статей сохранены.",
+    "changed_artifacts": [
+      {
+        "path": "docs/translations/openjev-rlcd-ru.md",
+        "previous_sha256": "85eedba3b90b704ebde083b9ead9b222db885e2a917b6cb22f068a2704f37790",
+        "sha256": "8be9c0e4adff511ff68165e74d74e8b17196e65bd1fd1d96dc2a2d177d53b624"
+      },
+      {
+        "path": "docs/translations/sbert2s1-ru.md",
+        "previous_sha256": "331e8c1ef4a182c69cbbd39f51bd1c5bd5b5521c943dd9059aa21e9c97901b84",
+        "sha256": "44ff3bc1321e76ea5e93689d44c2bac98f51c1a11ffeb7e3a5f608764371f435"
+      }
+    ]
+  }
 }

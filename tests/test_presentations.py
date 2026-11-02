@@ -15,6 +15,24 @@ ADVISOR = ROOT / "presentations/advisor"
 
 
 class PresentationTests(unittest.TestCase):
+    def test_dated_talk_is_checked_alongside_current_deck(self):
+        from scripts.check_presentations import check
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp) / 'advisor'
+            shutil.copytree(ADVISOR, directory, ignore=shutil.ignore_patterns('~$*', '__pycache__'))
+            def update_manifest():
+                files = sorted(p for p in directory.rglob('*')
+                               if p.is_file() and p.name != 'SHA256SUMS')
+                (directory / 'SHA256SUMS').write_text(''.join(
+                    f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.relative_to(directory).as_posix()}\n'
+                    for p in files), encoding='utf-8')
+            update_manifest()
+            self.assertEqual(check(directory), [])
+            talk = directory / 'research-talk-15min-2026-10-11.pptx'
+            talk.write_bytes(b'truncated')
+            update_manifest()
+            self.assertTrue(any('PPTX ' + talk.name in e for e in check(directory)))
+
     def test_checker_rejects_truncated_deck_even_with_matching_hash(self):
         with tempfile.TemporaryDirectory() as tmp:
             directory = Path(tmp) / 'advisor'

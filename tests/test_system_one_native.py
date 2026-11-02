@@ -11,6 +11,8 @@ from scripts.system_one_pilot.live_api import PaidClient
 from scripts.system_one_pilot.live_data import observed_state
 
 
+@unittest.skipUnless(os.environ.get('SYSTEM_ONE_NATIVE_TESTS') == '1',
+                     'Native tests require SYSTEM_ONE_NATIVE_TESTS=1 and the pinned pilot environment')
 class NativeSmoke(unittest.TestCase):
     def test_real_native_bm25_and_observation_path_without_paid_http(self):
         os.environ['TAU2_DATA_DIR']=str(TAU/'data')

@@ -1,7 +1,12 @@
 import copy
 import math
 import unittest
-import torch
+try:
+    import torch
+except ModuleNotFoundError as exc:
+    if exc.name != 'torch':
+        raise
+    raise unittest.SkipTest('Head tests require torch; use the pilot environment')
 from scripts.system_one_pilot import adapt_head
 
 class TinyHead(torch.nn.Module):

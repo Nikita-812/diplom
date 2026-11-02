@@ -1,4 +1,5 @@
 import copy
+import os
 import unittest
 from scripts.system_one_pilot import adaptation
 from scripts.system_one_pilot.data import digest
@@ -50,6 +51,8 @@ class ExtractionBoundaryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'test'):
             extract(SimpleNamespace(root=Path('/does-not-exist'),allowed_splits=['test']))
 
+@unittest.skipUnless(os.environ.get('SYSTEM_ONE_NATIVE_TESTS') == '1',
+                     'Native tests require SYSTEM_ONE_NATIVE_TESTS=1 and the pinned pilot environment')
 class CollectionStopTests(unittest.TestCase):
     def test_reservation_refusal_stops_before_starting_another_episode(self):
         import json
@@ -73,10 +76,26 @@ class CollectionStopTests(unittest.TestCase):
 class SealedSourceTests(unittest.TestCase):
     def test_source_verification_does_not_open_unselected_task_bodies(self):
         import json
+        from pathlib import Path
+        import tempfile
         from unittest.mock import patch
         from scripts.system_one_pilot import live
-        source=json.loads(live.SPLIT.with_name('source-manifest.json').read_text());opened=[]
-        def expected_hash(path):
-            name=str(path.relative_to(live.TAU));opened.append(name);return source['files'][name]
-        with patch.object(live,'filehash',side_effect=expected_hash):live.sealed_train_tasks(live.TAU)
-        self.assertFalse(any('/tasks/' in p for p in opened))
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);split=root/'split.json';tasks={};hashes={}
+            folder=root/'data/tau2/domains/banking_knowledge/tasks';folder.mkdir(parents=True)
+            for i in range(5):
+                task_id=f'train{i}';body={'id':task_id}
+                tasks[task_id]={'split':'train','family':task_id};hashes[task_id]=digest(body)
+                (folder/(task_id+'.json')).write_text(json.dumps(body))
+            tasks['unselected']={'split':'test','family':'sealed'};hashes['unselected']='not-opened'
+            manifest={'tasks':tasks,'task_hashes':hashes};manifest['manifest_sha256']=digest(manifest)
+            split.write_text(json.dumps(manifest))
+            (root/'source-manifest.json').write_text(json.dumps({'files':{
+                'source.py':'pinned','data/tau2/domains/banking_knowledge/tasks/unselected.json':'not-opened'}}))
+            opened=[]
+            def expected_hash(path):
+                name=str(path.relative_to(root));opened.append(name)
+                self.assertEqual(name,'source.py');return 'pinned'
+            with patch.object(live,'SPLIT',split),patch.object(live,'filehash',side_effect=expected_hash):
+                self.assertEqual(set(live.sealed_train_tasks(root)),{f'train{i}' for i in range(5)})
+            self.assertEqual(opened,['source.py'])

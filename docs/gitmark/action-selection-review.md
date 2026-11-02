@@ -537,4 +537,3 @@ grouped splits по исходной задаче/семейству и не п�
 [kev4-card]: https://huggingface.co/jaredpalmer/kev-4b/blob/6cfce5c2fa4b4bd64026336ab649c5ca78857d52/README.md
 [kev-pack]: https://github.com/jaredpalmer/kev/blob/2ecafc49fe1e8945cd600443e6c04c1cf0b3a78f/kev/model.py#L87-L142
 [kev-api]: https://github.com/jaredpalmer/kev/blob/2ecafc49fe1e8945cd600443e6c04c1cf0b3a78f/kev/api.py
-

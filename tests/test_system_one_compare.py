@@ -71,8 +71,18 @@ class ComparisonTests(unittest.TestCase):
             def encode(self,card):return {},[1,2]
             def forward(self,enc):return .4,[0.,1.]
         with tempfile.TemporaryDirectory() as d:
-            out=Path(d)/'run'
-            with patch.object(compare,'Laya',Adapter), patch.object(compare,'swap',return_value='test'), patch.object(compare,'memory',return_value={}), redirect_stdout(io.StringIO()):
+            root=Path(d);out=root/'run'
+            rows=[]
+            for i in range(30):
+                inp={'state':'fixture','candidate':str(i)}
+                rows.append({'row_id':str(i),'input_sha256':digest(inp),
+                             'card':{'id':str(i),'input':inp,'family':'fixture'},
+                             'decision':{'label':'useful'}})
+            cohort=root/'cohort.jsonl';cohort.write_text(''.join(json.dumps(r)+'\n' for r in rows))
+            protocol=root/'protocol.json';protocol.write_text(json.dumps({
+                'cohort_source':'cohort.jsonl','cohort_sha256':compare.filehash(cohort),
+                'rows':30,'hard_labels':30,'families':1,'order_seed':25,'performance_repeats':3}))
+            with patch.object(compare,'ROOT',root), patch.object(compare,'PROTOCOL',protocol), patch.object(compare.importlib.metadata,'version',return_value='fixture'), patch.object(compare,'Laya',Adapter), patch.object(compare,'swap',return_value='test'), patch.object(compare,'memory',return_value={}), redirect_stdout(io.StringIO()):
                 compare.run(SimpleNamespace(arm='laya',out=out))
             self.assertEqual(json.loads((out/'receipt.json').read_text())['status'],'completed')
             self.assertEqual(json.loads((out/'receipt-start.json').read_text())['status'],'running')

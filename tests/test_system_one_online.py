@@ -1,4 +1,5 @@
 import copy
+import os
 from contextlib import closing
 import unittest
 from scripts.system_one_pilot import online
@@ -79,6 +80,8 @@ class OnlineTests(unittest.TestCase):
 
 if __name__=='__main__':unittest.main()
 
+@unittest.skipUnless(os.environ.get('SYSTEM_ONE_NATIVE_TESTS') == '1',
+                     'Native tests require SYSTEM_ONE_NATIVE_TESTS=1 and the pinned pilot environment')
 class NativeJudgeBoundaryTests(unittest.TestCase):
     def test_native_default_judge_is_routed_to_declared_model_and_paid_ledger(self):
         import json
@@ -105,6 +108,8 @@ class NativeJudgeBoundaryTests(unittest.TestCase):
                 cid,payload=c.execute('SELECT call_id,request FROM api_calls').fetchone()
             self.assertTrue(cid.endswith('/judge'));self.assertEqual(json.loads(payload)['model'],DEEPSEEK)
 
+@unittest.skipUnless(os.environ.get('SYSTEM_ONE_NATIVE_TESTS') == '1',
+                     'Native tests require SYSTEM_ONE_NATIVE_TESTS=1 and the pinned pilot environment')
 class NativeProjectionTests(unittest.TestCase):
     def test_real_native_agent_keeps_raw_trajectory_but_sends_only_selected_kb(self):
         import json
@@ -174,6 +179,8 @@ class OnlineSummaryTests(unittest.TestCase):
             receipt=json.loads((run/'receipt.json').read_text());receipt['evaluation']='ENV';(run/'receipt.json').write_text(json.dumps(receipt))
             with self.assertRaisesRegex(ValueError,'ALL'):online.summarize_runs([run],ledger)
 
+@unittest.skipUnless(os.environ.get('SYSTEM_ONE_NATIVE_TESTS') == '1',
+                     'Native tests require SYSTEM_ONE_NATIVE_TESTS=1 and the pinned pilot environment')
 class JudgeCompletenessTests(unittest.TestCase):
     def test_empty_partial_or_duplicate_judge_assertions_never_become_success(self):
         import json
@@ -197,6 +204,8 @@ class JudgeCompletenessTests(unittest.TestCase):
                         with self.assertRaisesRegex(ValueError,'assertion'):NLAssertionsEvaluator.calculate_reward(task,[])
                     else:self.assertEqual(NLAssertionsEvaluator.calculate_reward(task,[]).reward,1.)
 
+@unittest.skipUnless(os.environ.get('SYSTEM_ONE_NATIVE_TESTS') == '1',
+                     'Native tests require SYSTEM_ONE_NATIVE_TESTS=1 and the pinned pilot environment')
 class OnlineStopTests(unittest.TestCase):
     def test_reserve_refusal_stops_online_before_next_task(self):
         import json

@@ -2,7 +2,7 @@
 
 **Оригинальное название:** *OpenJev-RLCD: A Working RLCD Implementation*.
 **Авторы:** Zhimin Gao, Pichao Wang.
-**Контактные адреса, указанные авторами:** zhimingao113@gmail.com; pichaowang@gmail.com.
+**Контактные адреса, указанные авторами:** <zhimingao113@gmail.com>; <pichaowang@gmail.com>.
 **Источник:** [arXiv:2609.38850v1](https://arxiv.org/html/2609.38850v1), версия 1 от 30.09.2026.
 **Лицензия оригинала:** [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
 **Перевод:** неофициальный полный перевод на русский язык, выполненный Codex 25.10.2026. Авторы оригинала перевод не проверяли. Изменение по отношению к оригиналу — перевод текста и представление таблиц в Markdown; библиографические записи сохранены на языке оригинала. Примечания переводчика вынесены в конец и не являются частью статьи.
@@ -214,7 +214,6 @@ $$
 
 Работающий RLCD для рассуждающих моделей оценивает с помощью собственного правила оценки то, что модель фактически решает, — распределение ответов после собственного обоснования, — сначала для калибровки этого решения, а затем для подкрепления рассуждения, которое к нему приводит. Оценивание групп выборок, напротив, вознаграждает несогласие, а вознаграждение за правильность разрушает калибровку; оба эффекта видны в одном тождестве. Выигрыш состоит не в нескольких пунктах точности, а в решениях, которые можно делегировать: при той же точности, что и GRPO, один запрос RLCD знает, каким из своих ответов доверять.
 
-
 ## Литература
 
 - \[1\] A. Ahmadian, C. Cremer, M. Gallé, M. Fadaee, J. Kreutzer, O. Pietquin, A. Üstün, and S. Hooker (2024) Back to basics: revisiting REINFORCE-style optimization for learning from human feedback in LLMs. In Annual Meeting of the Association for Computational Linguistics (ACL), Cited by: [§3.1](https://arxiv.org/html/2609.38850v1#S3.SS1.SSS0.Px1.p1.2), [§6](https://arxiv.org/html/2609.38850v1#S6.SS0.SSS0.Px2.p1.1).
@@ -237,7 +236,6 @@ $$
 - \[18\] Y. Wang, X. Ma, G. Zhang, Y. Ni, A. Chandra, S. Guo, W. Ren, A. Arulraj, X. He, Z. Jiang, T. Li, M. Ku, K. Wang, A. Zhuang, R. Fan, X. Yue, and W. Chen (2024) MMLU-Pro: a more robust and challenging multi-task language understanding benchmark. In Advances in Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks Track, Cited by: [§4](https://arxiv.org/html/2609.38850v1#S4.SS0.SSS0.Px1.p1.1).
 - \[19\] R. J. Williams (1992) Simple statistical gradient-following algorithms for connectionist reinforcement learning. Machine Learning 8, pp. 229–256. Cited by: [§6](https://arxiv.org/html/2609.38850v1#S6.SS0.SSS0.Px2.p1.1).
 - \[20\] E. Zelikman, Y. Wu, J. Mu, and N. D. Goodman (2022) STaR: bootstrapping reasoning with reasoning. In Advances in Neural Information Processing Systems (NeurIPS), Cited by: [§4](https://arxiv.org/html/2609.38850v1#S4.SS0.SSS0.Px2.p1.1), [§6](https://arxiv.org/html/2609.38850v1#S6.SS0.SSS0.Px3.p1.1).
-
 
 ## Приложение A. Оценки градиента и их точные проверки
 
